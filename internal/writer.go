@@ -18,23 +18,23 @@ func ReplaceInFile(inputFileName string, outputFile *os.File) error {
 	writer := bufio.NewWriter(outputFile)
 
 	// add md checklist
-	writeLine(writer, `#import "@preview/cheq:0.3.0": checklist`)
-	writeLine(writer, "#show: checklist")
-	writeLine(writer, "")
+	// writeLine(writer, `#import "@preview/cheq:0.3.0": checklist`)
+	// writeLine(writer, "#show: checklist")
+	// writeLine(writer, "")
 
 	// add md alerts
-	writeLine(writer, `#import "@preview/note-me:0.5.0": *`)
-	writeLine(writer, "")
+	// writeLine(writer, `#import "@preview/note-me:0.5.0": *`)
+	// writeLine(writer, "")
 
 	for scanner.Scan() {
 		line := scanner.Text()
 		line = strings.ReplaceAll(line, "- ☐ ", "- [ ] ")
 		line = strings.ReplaceAll(line, "- ☒ ", "- [x] ")
-		line = replaceAlert(line, `\[!NOTE\]`, "note")
-		line = replaceAlert(line, `\[!TIP\]`, "tip")
-		line = replaceAlert(line, `\[!IMPORTANT\]`, "important")
-		line = replaceAlert(line, `\[!WARNING\]`, "warning")
-		line = replaceAlert(line, `\[!CAUTION\]`, "caution")
+		// line = replaceAlert(line, `\[!NOTE\]`, "note")
+		// line = replaceAlert(line, `\[!TIP\]`, "tip")
+		// line = replaceAlert(line, `\[!IMPORTANT\]`, "important")
+		// line = replaceAlert(line, `\[!WARNING\]`, "warning")
+		// line = replaceAlert(line, `\[!CAUTION\]`, "caution")
 		writeLine(writer, line)
 	}
 
