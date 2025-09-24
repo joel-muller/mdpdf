@@ -42,6 +42,23 @@ $$
 
 > [!NOTE]
 > You dont really have to understand this
+> But it is nice if you do
+
+> [!TIP]
+> You dont really have to understand this
+> But it is nice if you do
+
+> [!IMPORTANT]
+> You dont really have to understand this
+> But it is nice if you do
+
+> [!WARNING]
+> You dont really have to understand this
+> But it is nice if you do
+
+> [!CAUTION]
+> You dont really have to understand this
+> But it is nice if you do
 
 ## 💻 A Little Coding for the Road  
 

@@ -20,7 +20,7 @@ func main() {
 		log.Fatalf("%v does not exists", input)
 	}
 
-	tempfolder := internal.CreateTempFile()
+	tempfolder := internal.CreateTempDir()
 	defer os.RemoveAll(tempfolder)
 	tempfile := filepath.Join(tempfolder, "temp.typ")
 
@@ -31,7 +31,16 @@ func main() {
 		log.Fatalf("Pandoc failed: %v", err)
 	}
 
-	typstCmd := exec.Command("typst", "compile", tempfile, output)
+	newtempfile := internal.CreateTempFile(tempfolder)
+	internal.ReplaceInFile(tempfile, newtempfile)
+
+	cmd := exec.Command("cat", newtempfile.Name())
+	cmd.Stdout = os.Stdout
+	if err := cmd.Run(); err != nil {
+		log.Fatalf("cat failed: %v", err)
+	}
+
+	typstCmd := exec.Command("typst", "compile", newtempfile.Name(), output)
 	typstCmd.Stdout = os.Stdout
 	typstCmd.Stderr = os.Stderr
 	if err := typstCmd.Run(); err != nil {
